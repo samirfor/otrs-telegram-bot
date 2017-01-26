@@ -16,4 +16,5 @@ docker run -e BOT_TOKEN="123456789:AbCdfGhIJKlmNoQQRsTUVwxyZ" otrs-telegram-bot
 ## On Standalone
 
 * Install [Node.js](https://nodejs.org)
+* Install [Telegraf.js](http://telegraf.js.org/): `npm install telegraf`
 * Start application: `node index.js`
