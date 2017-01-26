@@ -8,6 +8,15 @@ OTRS Telegram Integration Bot
 
 ## On Docker
 
+### From Hub
+
+Image link: https://hub.docker.com/r/samirfor/otrs-telegram-bot/
+
+```bash
+docker run -e BOT_TOKEN="123456789:AbCdfGhIJKlmNoQQRsTUVwxyZ" samirfor/otrs-telegram-bot
+```
+
+### Building from Source
 ```bash
 docker build -t otrs-telegram-bot .
 docker run -e BOT_TOKEN="123456789:AbCdfGhIJKlmNoQQRsTUVwxyZ" otrs-telegram-bot
@@ -16,5 +25,5 @@ docker run -e BOT_TOKEN="123456789:AbCdfGhIJKlmNoQQRsTUVwxyZ" otrs-telegram-bot
 ## On Standalone
 
 * Install [Node.js](https://nodejs.org)
-* Install [Telegraf.js](http://telegraf.js.org/): `npm install telegraf`
+* Install node dependencies: `npm install`
 * Start application: `node index.js`
