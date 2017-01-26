@@ -1,5 +1,8 @@
 FROM node:alpine
 
-RUN set -xe && \
+RUN set -xe && npm install --no-cache telegraf node-rest-client
 
-    npm install telegraf --save
+COPY index.js .
+
+ENTRYPOINT ["node"]
+CMD ["index.js"]
