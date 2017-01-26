@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/samirfor/otrs-telegram-bot#readme",
   "dependencies": {
-    "node-rest-client": "^2.0.1",
+    "unirest": "^0.5.1",
     "telegraf": "^3.6.4"
   }
 }
