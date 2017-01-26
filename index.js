@@ -4,7 +4,7 @@ const app = new Telegraf(process.env.BOT_TOKEN)
 
 app.command('start', (ctx) => {
   console.log('start', ctx.from)
-  ctx.reply('Welcome!')
+  ctx.reply('Bem-vindo!')
 })
 
 app.hears('hi', (ctx) => ctx.reply('Hey there!'))
