@@ -1,28 +1,39 @@
 const Telegraf = require('telegraf');
+const { memorySession } = Telegraf;
 const httpclient = require('unirest');
 
-const app = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
-app.command('start', (ctx) => {
-	console.log('start', ctx.from);
-	ctx.reply('Bem-vindo!');
+bot.use(memorySession());
+
+// Register logger middleware
+bot.use((ctx, next) => {
+	const start = new Date();
+	return next().then(() => {
+		const ms = new Date() - start;
+		console.log('response time %sms', ms);
+	});
 });
 
-app.hears('hi', (ctx) => ctx.reply('Hey there!'));
+bot.command('start', (ctx) => {
+	ctx.reply('Welcome to OTRS Bot! Type /help');
+});
 
-app.on('sticker', (ctx) => ctx.reply('👍'));
+// app.hears('hi', (ctx) => ctx.reply('Hey there!'));
 
-app.command('test', (ctx) => {
-	console.log('test', ctx.form);
+bot.on('sticker', (ctx) => ctx.reply('👍'));
+
+bot.command('test', (ctx) => {
+	console.log(ctx.update.message.text);
 
 	httpclient.get('https://dns.google.com/resolve?name=google.com')
 		.headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
 		// .send({ "parameter": 23, "foo": "bar" })
 		.end(function (response) {
 			var json = JSON.parse(response.body);
-			console.log(json.Status);
-			ctx.reply(json.Status);
+			console.log(json);
+			ctx.reply(json);
 		});
 });
 
-app.startPolling();
+bot.startPolling();
